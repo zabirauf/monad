@@ -191,9 +191,6 @@ defmodule Monad.Internal do
     # m ==> bind(b, fn _ -> ... end)
     expand_bind(mod, quote(do: _), expr, exprs)
   end
-  def expand(_, []) do
-    []
-  end
 
   defp expand_bind(mod, lhs, rhs, exprs) do
     [quote do
