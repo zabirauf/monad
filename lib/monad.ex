@@ -216,7 +216,7 @@ defmodule Monad.Internal do
   def transform_return(mod, {l, r}) do
     { transform_return(mod, l), transform_return(mod, r) }
   end
-  def transform_return(mod, x) do
+  def transform_return(_mod, x) do
     x
   end
 end
