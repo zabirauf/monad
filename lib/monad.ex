@@ -168,6 +168,9 @@ defmodule Monad.Internal do
   @moduledoc false
 
   @doc false
+  def expand(_, [expr]) do
+    [expr]
+  end
   def expand(mod, [{:let, _, let_exprs} | exprs]) do
     if length(let_exprs) == 1 and is_list(hd(let_exprs)) do
       case Keyword.fetch(hd(let_exprs), :do) do
@@ -183,9 +186,6 @@ defmodule Monad.Internal do
   def expand(mod, [{:<-, _, [lhs, rhs]} | exprs]) do
     # x <- m ==> bind(b, fn x -> ... end)
     expand_bind(mod, lhs, rhs, exprs)
-  end
-  def expand(_, [expr]) do
-    [expr]
   end
   def expand(mod, [expr | exprs]) do
     # m ==> bind(b, fn _ -> ... end)
