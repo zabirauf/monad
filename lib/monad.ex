@@ -194,11 +194,11 @@ defmodule Monad.Internal do
 
   defp expand_bind(mod, lhs, rhs, exprs) do
     [quote do
-      unquote(mod).bind(unquote(rhs),
-                        fn unquote(lhs) ->
-                             unquote_splicing(expand(mod, exprs))
-                        end)
-    end]
+       unquote(mod).bind(unquote(rhs),
+                         fn unquote(lhs) ->
+                              unquote_splicing(expand(mod, exprs))
+                         end)
+     end]
   end
 
   @doc false
