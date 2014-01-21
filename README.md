@@ -1,5 +1,7 @@
 # Monad
 
+[![Build Status](https://travis-ci.org/rmies/monad.png?branch=develop)](https://travis-ci.org/rmies/monad)
+
 This library provides do-syntax and monads for
 [Elixir](http://elixir-lang.org/). It is heavily inspired by
 [Haskell](http://haskell.org/).
@@ -27,7 +29,7 @@ To contribute:
 5. Push to your fork of the repository and then send a pull-request
    through GitHub.
 
-        git push mine some-topic-branch
+        git push mine feature/name-of-your-branch
 
 6. We will review your patch and merge it into the main repository or
    send you feedback.

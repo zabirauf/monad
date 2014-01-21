@@ -168,6 +168,9 @@ defmodule Monad.Internal do
   @moduledoc false
 
   @doc false
+  def expand(_, [expr]) do
+    [expr]
+  end
   def expand(mod, [{:let, _, let_exprs} | exprs]) do
     if length(let_exprs) == 1 and is_list(hd(let_exprs)) do
       case Keyword.fetch(hd(let_exprs), :do) do
@@ -184,24 +187,18 @@ defmodule Monad.Internal do
     # x <- m ==> bind(b, fn x -> ... end)
     expand_bind(mod, lhs, rhs, exprs)
   end
-  def expand(_, [expr]) do
-    [expr]
-  end
   def expand(mod, [expr | exprs]) do
     # m ==> bind(b, fn _ -> ... end)
     expand_bind(mod, quote(do: _), expr, exprs)
   end
-  def expand(_, []) do
-    []
-  end
 
   defp expand_bind(mod, lhs, rhs, exprs) do
     [quote do
-      unquote(mod).bind(unquote(rhs),
-                        fn unquote(lhs) ->
-                             unquote_splicing(expand(mod, exprs))
-                        end)
-    end]
+       unquote(mod).bind(unquote(rhs),
+                         fn unquote(lhs) ->
+                              unquote_splicing(expand(mod, exprs))
+                         end)
+     end]
   end
 
   @doc false
@@ -219,7 +216,7 @@ defmodule Monad.Internal do
   def transform_return(mod, {l, r}) do
     { transform_return(mod, l), transform_return(mod, r) }
   end
-  def transform_return(mod, x) do
+  def transform_return(_mod, x) do
     x
   end
 end
