@@ -6,7 +6,7 @@ defmodule Monad.Mixfile do
      version: "1.0.3",
      name: "monad",
      source_url: "https://github.com/rmies/monad",
-     elixir: "~> 0.13.0",
+     elixir: "~> 0.15.0",
      deps: deps]
   end
 
@@ -18,6 +18,6 @@ defmodule Monad.Mixfile do
   # Returns the list of dependencies in the format:
   # { :foobar, "~> 0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
-    [{:ex_doc, github: "elixir-lang/ex_doc", only: :dev}]
+    [{:ex_doc, "~> 0.5.1", only: :dev}]
   end
 end
