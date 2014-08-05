@@ -259,7 +259,7 @@ defmodule Monad.Pipeline do
           # I think there should be no conflict with the variable used in `fn`,
           # but just to be sure let's use an odd variable name.
           bind(unquote(x), fn _monad_pipebind_arg ->
-            unquote(Macro.pipe(quote do _monad_pipebind_arg end, fc))
+            unquote(Macro.pipe(quote do _monad_pipebind_arg end, fc, 0))
           end)
         end
       end
