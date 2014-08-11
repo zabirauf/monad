@@ -7,6 +7,7 @@ defmodule Monad.Mixfile do
      name: "monad",
      description: "Monads and do-syntax for Elixir",
      source_url: "https://github.com/rmies/monad",
+     package: package,
      elixir: "~> 0.15.0",
      deps: deps]
   end
@@ -21,5 +22,11 @@ defmodule Monad.Mixfile do
   defp deps do
     [{:ex_doc, "~> 0.5.1", only: :dev},
      {:earmark, github: "pragdave/earmark", only: :dev}]
+  end
+
+  defp package do
+    [contributors: ["Wojciech Kaczmarek", "Peter Minten", "Michel Rijnders"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/rmies/monad"}]
   end
 end
