@@ -2,6 +2,7 @@ language: erlang
 env:
   - ELIXIR_VER=v0.15.0
 otp_release:
+  - 17.1
   - 17.0
 before_install:
   - mkdir -p vendor/elixir
