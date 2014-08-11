@@ -1,1 +1,2 @@
-%{"ex_doc": {:package, "0.5.1"}}
+%{"earmark": {:git, "git://github.com/pragdave/earmark.git", "32df140c74606b8e0b3825962775c0536cd399c0", []},
+  "ex_doc": {:package, "0.5.1"}}

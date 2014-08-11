@@ -18,6 +18,7 @@ defmodule Monad.Mixfile do
   # Returns the list of dependencies in the format:
   # { :foobar, "~> 0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
-    [{:ex_doc, "~> 0.5.1", only: :dev}]
+    [{:ex_doc, "~> 0.5.1", only: :dev},
+     {:earmark, github: "pragdave/earmark"}]
   end
 end

@@ -118,6 +118,7 @@ defmodule Monad do
   with a function that's missing the first argument. See the example below.
 
   """
+  use Behaviour
 
   @doc """
   Helper for defining monads.
@@ -155,12 +156,12 @@ defmodule Monad do
   @doc """
   Inject a value into a monad.
   """
-  @callback return(any) :: monad
+  defcallback return(any) :: monad
 
   @doc """
   Bind a value in the monad to the passed function which returns a new monad.
   """
-  @callback bind(monad, (any -> monad)) :: monad
+  defcallback bind(monad, (any -> monad)) :: monad
 end
 
 defmodule Monad.Internal do
@@ -228,6 +229,8 @@ defmodule Monad.Pipeline do
   Just use `use Monad.Pipeline` in your monad module and define `return/1` and
   `bind/2` and get `pipebind/2` for free.
   """
+  use Behaviour
+
   defmacro __using__(_opts) do
     quote location: :keep do
       @behaviour Monad.Pipeline
@@ -252,15 +255,19 @@ defmodule Monad.Pipeline do
         # Enum.reduce is a left fold
         Macro.unpipe(pipeline)
         |> Enum.reduce(&(__MODULE__.pipebind(&2, &1)))
+        |> elem(0)
       end
 
       def pipebind(x, fc) do
+        # Unpipe returns a tuple of the value and an insert position (currently
+        # always 0). We need to do some unwrapping and rewrapping of that tuple
+        # in order to make things work.
         quote location: :keep do
           # I think there should be no conflict with the variable used in `fn`,
           # but just to be sure let's use an odd variable name.
-          bind(unquote(x), fn _monad_pipebind_arg ->
-            unquote(Macro.pipe(quote do _monad_pipebind_arg end, fc, 0))
-          end)
+          {bind(unquote(elem(x, 0)), fn _monad_pipebind_arg ->
+            unquote(Macro.pipe(quote do _monad_pipebind_arg end, elem(fc, 0), 0))
+           end), 0}
         end
       end
 
@@ -272,5 +279,5 @@ defmodule Monad.Pipeline do
   Like bind/2 but works on ASTs and the second argument should be a function
   call where the first argument is missing.
   """
-  @callback pipebind(Macro.t, Macro.t) :: Macro.t
+  defcallback pipebind(Macro.t, Macro.t) :: Macro.t
 end
