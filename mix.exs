@@ -5,6 +5,7 @@ defmodule Monad.Mixfile do
     [app: :monad,
      version: "1.0.3",
      name: "monad",
+     description: "Monads and do-syntax for Elixir",
      source_url: "https://github.com/rmies/monad",
      elixir: "~> 0.15.0",
      deps: deps]
