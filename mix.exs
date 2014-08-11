@@ -20,6 +20,6 @@ defmodule Monad.Mixfile do
   # { :foobar, "~> 0.1", git: "https://github.com/elixir-lang/foobar.git" }
   defp deps do
     [{:ex_doc, "~> 0.5.1", only: :dev},
-     {:earmark, github: "pragdave/earmark"}]
+     {:earmark, github: "pragdave/earmark", only: :dev}]
   end
 end
