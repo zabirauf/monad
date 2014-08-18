@@ -1,6 +1,8 @@
 # Monad
 
 [![Build Status](https://travis-ci.org/rmies/monad.png?branch=develop)](https://travis-ci.org/rmies/monad)
+[![hex.pm version](https://img.shields.io/hexpm/v/monad.svg)](https://hex.pm/packages/monad)
+[![hex.pm downloads](https://img.shields.io/hexpm/dt/monad.svg)](https://hex.pm/packages/monad)
 
 This library provides do-syntax and monads for
 [Elixir](http://elixir-lang.org/). It is heavily inspired by
