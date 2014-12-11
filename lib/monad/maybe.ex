@@ -151,7 +151,7 @@ defmodule Monad.Maybe do
   """
   @spec cat_maybes([maybe_m]) :: [any]
   def cat_maybes(l) do
-    lc x inlist l, is_just(x), do: from_just x
+    for x <- l, is_just(x), do: from_just x
   end
 
   @doc """
@@ -160,6 +160,6 @@ defmodule Monad.Maybe do
   """
   @spec map_maybes((any -> maybe_m), [any]) :: [any]
   def map_maybes(f, l) do
-    lc x inlist l, is_just(f.(x)), do: from_just f.(x)
+    for x <- l, is_just(f.(x)), do: from_just f.(x)
   end
 end

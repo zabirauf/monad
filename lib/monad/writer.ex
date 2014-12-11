@@ -1,4 +1,6 @@
 defmodule Monad.Writer do
+  use Behaviour
+
   @moduledoc """
   The Writer monad.
 
@@ -80,10 +82,10 @@ defmodule Monad.Writer do
   @doc """
   Returns an initial output value.
   """
-  @callback initial() :: output
+  defcallback initial() :: output
 
   @doc """
   Adds a new piece of output to the output list.
   """
-  @callback combine(output, output) :: output
+  defcallback combine(output, output) :: output
 end
