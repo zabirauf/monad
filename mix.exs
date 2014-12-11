@@ -3,7 +3,7 @@ defmodule Monad.Mixfile do
 
   def project do
     [app: :monad,
-     version: "1.0.3",
+     version: "1.0.4",
      name: "monad",
      description: "Monads and do-syntax for Elixir",
      source_url: "https://github.com/rmies/monad",
