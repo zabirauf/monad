@@ -1,5 +1,6 @@
 defmodule Monad.Reader do
   use Monad
+  use Monad.Pipeline
 
   @moduledoc """
   The Reader monad.

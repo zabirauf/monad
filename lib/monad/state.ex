@@ -1,5 +1,6 @@
 defmodule Monad.State do
   use Monad
+  use Monad.Pipeline
 
   @moduledoc """
   The State monad.
